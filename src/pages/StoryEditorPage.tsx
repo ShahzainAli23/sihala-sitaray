@@ -1,3 +1,5 @@
+import { PostMediaManager } from "../components/PostMediaManager";
+
 import {
   useEffect,
   useState,
@@ -366,17 +368,26 @@ You will be able to add pictures and videos between paragraphs after saving this
           </div>
         </form>
 
-        <section className="editor-media-placeholder">
-          <p className="eyebrow">Images and videos</p>
+                {post && user ? (
+          <PostMediaManager
+            postId={post.id}
+            authorId={user.id}
+            storyBody={form.body}
+          />
+        ) : (
+          <section className="editor-media-placeholder">
+            <p className="eyebrow">Images and videos</p>
 
-          <h2>Add media after saving.</h2>
+            <h2>Save the draft before uploading media.</h2>
 
-          <p>
-            Once this draft has been saved, you can upload media, decide
-            whether it appears inside the post, in the gallery, or both,
-            and choose where it sits between paragraphs.
-          </p>
-        </section>
+            <p>
+              Images and videos need a saved story to attach to. Save
+              this draft first, then return here to upload media and
+              decide where it should appear.
+            </p>
+          </section>
+        )}
+        
       </div>
     </section>
   );

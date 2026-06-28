@@ -1055,3 +1055,219 @@ a {
     min-height: 20rem;
   }
 }
+
+/* ==========================================================
+   STORY MEDIA UPLOADS
+   ========================================================== */
+
+.post-media-manager {
+  display: grid;
+  gap: 1.25rem;
+  margin-top: 1.25rem;
+}
+
+.post-media-manager__heading {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 1.25rem;
+  padding: 1.75rem;
+  border: 1px solid
+    color-mix(in oklch, var(--border) 70%, transparent);
+  border-radius: 0.8rem;
+  background: color-mix(in oklch, var(--card) 70%, transparent);
+}
+
+.post-media-manager__heading h2 {
+  margin: 0.65rem 0 0;
+  font-family: "Fraunces", Georgia, serif;
+  font-size: 1.6rem;
+  font-weight: 500;
+  letter-spacing: -0.03em;
+}
+
+.post-media-manager__heading p:not(.eyebrow) {
+  max-width: 38rem;
+  margin: 0.75rem 0 0;
+  color: var(--muted-foreground);
+  line-height: 1.7;
+}
+
+.media-paragraph-count {
+  flex: 0 0 auto;
+  padding: 0.45rem 0.7rem;
+  border-radius: 999px;
+  background: var(--secondary);
+  color: var(--foreground);
+  font-size: 0.78rem;
+  font-weight: 600;
+  white-space: nowrap;
+}
+
+.media-upload-card {
+  display: grid;
+  gap: 1rem;
+  padding: 1.75rem;
+  border: 1px solid
+    color-mix(in oklch, var(--border) 70%, transparent);
+  border-radius: 0.8rem;
+  background: var(--card);
+}
+
+.media-selected-file,
+.media-help-text {
+  margin: 0;
+  color: var(--muted-foreground);
+  font-size: 0.875rem;
+  line-height: 1.6;
+}
+
+.media-selected-file strong {
+  color: var(--foreground);
+}
+
+.media-toggle-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem 1.25rem;
+}
+
+.media-checkbox {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  color: var(--foreground);
+  font-size: 0.9rem;
+  font-weight: 500;
+  cursor: pointer;
+}
+
+.media-checkbox input {
+  width: 1rem;
+  height: 1rem;
+  accent-color: var(--primary);
+}
+
+.media-settings-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 1rem;
+}
+
+.media-upload-button {
+  width: fit-content;
+  border: 0;
+  cursor: pointer;
+}
+
+.media-upload-button:disabled {
+  cursor: wait;
+  opacity: 0.7;
+}
+
+.media-empty-state {
+  padding: 1.25rem;
+  border: 1px dashed
+    color-mix(in oklch, var(--border) 85%, transparent);
+  border-radius: 0.75rem;
+  color: var(--muted-foreground);
+  text-align: center;
+}
+
+.media-list {
+  display: grid;
+  gap: 1rem;
+}
+
+.media-item {
+  display: grid;
+  grid-template-columns: minmax(12rem, 0.8fr) minmax(0, 1.2fr);
+  overflow: hidden;
+  border: 1px solid
+    color-mix(in oklch, var(--border) 70%, transparent);
+  border-radius: 0.8rem;
+  background: var(--card);
+}
+
+.media-item__preview {
+  min-height: 16rem;
+  background: color-mix(in oklch, var(--secondary) 55%, transparent);
+}
+
+.media-item__preview img,
+.media-item__preview video {
+  display: block;
+  width: 100%;
+  height: 100%;
+  min-height: 16rem;
+  object-fit: cover;
+}
+
+.media-preview-unavailable {
+  display: grid;
+  min-height: 16rem;
+  place-items: center;
+  padding: 1rem;
+  color: var(--muted-foreground);
+  text-align: center;
+}
+
+.media-item__content {
+  display: grid;
+  gap: 1rem;
+  padding: 1.5rem;
+}
+
+.media-item__heading h3 {
+  max-width: 100%;
+  margin: 0.5rem 0 0;
+  overflow-wrap: anywhere;
+  font-family: "Fraunces", Georgia, serif;
+  font-size: 1.25rem;
+  font-weight: 500;
+  letter-spacing: -0.02em;
+}
+
+.media-item__location {
+  margin: 0.5rem 0 0;
+  color: var(--muted-foreground);
+  font-size: 0.875rem;
+}
+
+.media-item__actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+}
+
+.media-item__actions .secondary-button {
+  margin-top: 0;
+}
+
+.media-item__actions .danger-button:disabled,
+.media-item__actions .secondary-button:disabled {
+  cursor: wait;
+  opacity: 0.7;
+}
+
+@media (max-width: 760px) {
+  .post-media-manager__heading {
+    flex-direction: column;
+  }
+
+  .media-item {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 640px) {
+  .media-upload-card,
+  .post-media-manager__heading,
+  .media-item__content {
+    padding: 1.25rem;
+  }
+
+  .media-settings-grid {
+    grid-template-columns: 1fr;
+  }
+}
