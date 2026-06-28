@@ -8,7 +8,6 @@ import {
 import {
   deletePostMedia,
   fetchPostMedia,
-  MAX_MEDIA_FILE_BYTES,
   updatePostMediaSettings,
   uploadPostMedia,
   type MediaDisplaySettings,
