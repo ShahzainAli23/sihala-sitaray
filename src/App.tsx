@@ -1,6 +1,9 @@
+import { Route, Routes } from "react-router-dom";
+
 import { AuthProvider } from "./auth/AuthProvider";
 import { ProtectedRoute } from "./components/ProtectedRoute";
 import { SiteHeader } from "./components/SiteHeader";
+
 import { AccountSettingsPage } from "./pages/AccountSettingsPage";
 import { AuthorPage } from "./pages/AuthorPage";
 import { DashboardPage } from "./pages/DashboardPage";
@@ -8,9 +11,9 @@ import { GalleryPage } from "./pages/GalleryPage";
 import { HomePage } from "./pages/HomePage";
 import { LoginPage } from "./pages/LoginPage";
 import { MoreAuthorsPage } from "./pages/MoreAuthorsPage";
+import { MyStoriesPage } from "./pages/MyStoriesPage";
 import { NotFoundPage } from "./pages/NotFoundPage";
-
-import { Route, Routes } from "react-router-dom";
+import { StoryEditorPage } from "./pages/StoryEditorPage";
 
 export default function App() {
   return (
@@ -28,6 +31,22 @@ export default function App() {
 
             <Route element={<ProtectedRoute />}>
               <Route path="/dashboard" element={<DashboardPage />} />
+
+              <Route
+                path="/dashboard/stories"
+                element={<MyStoriesPage />}
+              />
+
+              <Route
+                path="/dashboard/stories/new"
+                element={<StoryEditorPage />}
+              />
+
+              <Route
+                path="/dashboard/stories/:postId/edit"
+                element={<StoryEditorPage />}
+              />
+
               <Route path="/account" element={<AccountSettingsPage />} />
             </Route>
 

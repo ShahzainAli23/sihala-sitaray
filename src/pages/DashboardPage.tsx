@@ -55,12 +55,37 @@ export function DashboardPage() {
           <article className="dashboard-card">
             <p className="eyebrow">My stories</p>
 
-            <h2>Your writing space is almost ready.</h2>
+            <h2>Write, edit, and track your work.</h2>
 
             <p>
-              The next step is the story editor, where you will create drafts,
-              add media, and submit stories for review.
+              Create drafts, return to unfinished stories, and see whether a
+              submission is waiting for review.
             </p>
+
+            <Link
+              to="/dashboard/stories"
+              className="secondary-button"
+            >
+              Manage my stories <span>→</span>
+            </Link>
+          </article>
+
+          <article className="dashboard-card">
+            <p className="eyebrow">Start writing</p>
+
+            <h2>Have a new idea?</h2>
+
+            <p>
+              Begin a new draft now. You can save it privately and return to
+              it whenever you need.
+            </p>
+
+            <Link
+              to="/dashboard/stories/new"
+              className="pill-button"
+            >
+              New story <span>→</span>
+            </Link>
           </article>
 
           <article className="dashboard-card">

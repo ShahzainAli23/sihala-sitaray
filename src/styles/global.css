@@ -842,3 +842,216 @@ a {
     grid-template-columns: 1fr;
   }
 }
+
+/* ==========================================================
+   STORY WRITING WORKFLOW
+   ========================================================== */
+
+.story-list {
+  display: grid;
+  gap: 1rem;
+  margin-top: 3rem;
+}
+
+.story-list-empty {
+  margin-top: 3rem;
+  padding: 2.5rem;
+  border: 1px dashed
+    color-mix(in oklch, var(--border) 85%, transparent);
+  border-radius: 0.8rem;
+  background: color-mix(in oklch, var(--card) 68%, transparent);
+  text-align: center;
+}
+
+.story-list-empty h2 {
+  margin: 0;
+  font-family: "Fraunces", Georgia, serif;
+  font-size: 1.7rem;
+  font-weight: 500;
+  letter-spacing: -0.03em;
+}
+
+.story-list-empty p {
+  max-width: 32rem;
+  margin: 0.8rem auto 0;
+  color: var(--muted-foreground);
+  line-height: 1.7;
+}
+
+.story-list-card {
+  padding: 1.5rem;
+  border: 1px solid color-mix(in oklch, var(--border) 70%, transparent);
+  border-radius: 0.8rem;
+  background: var(--card);
+}
+
+.story-list-card__top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+}
+
+.story-list-card__date {
+  color: var(--muted-foreground);
+  font-size: 0.8rem;
+}
+
+.story-list-card h2 {
+  margin: 1rem 0 0;
+  font-family: "Fraunces", Georgia, serif;
+  font-size: 1.6rem;
+  font-weight: 500;
+  letter-spacing: -0.03em;
+}
+
+.story-list-card > p {
+  margin: 0.75rem 0 0;
+  color: var(--muted-foreground);
+  line-height: 1.7;
+}
+
+.story-list-card__actions {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.75rem;
+  margin-top: 1.25rem;
+}
+
+.status-badge {
+  display: inline-flex;
+  width: fit-content;
+  padding: 0.35rem 0.65rem;
+  border-radius: 999px;
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.03em;
+  text-transform: uppercase;
+}
+
+.status-badge--draft {
+  background: color-mix(in oklch, var(--secondary) 88%, transparent);
+  color: var(--foreground);
+}
+
+.status-badge--pending {
+  background: color-mix(in oklch, #e8b55b 25%, transparent);
+  color: color-mix(in oklch, var(--foreground) 90%, #5f3b00);
+}
+
+.status-badge--published {
+  background: color-mix(in oklch, #70b38a 24%, transparent);
+  color: color-mix(in oklch, var(--foreground) 88%, #0d5427);
+}
+
+.status-badge--rejected {
+  background: color-mix(in oklch, #df7777 20%, transparent);
+  color: color-mix(in oklch, var(--foreground) 88%, #5f0c0c);
+}
+
+.danger-button {
+  width: fit-content;
+  padding: 0.7rem 0.9rem;
+  border: 1px solid color-mix(in oklch, #df7777 55%, var(--border));
+  border-radius: 999px;
+  background: transparent;
+  color: color-mix(in oklch, var(--foreground) 88%, #8a2020);
+  cursor: pointer;
+  font-size: 0.875rem;
+  font-weight: 600;
+  transition:
+    transform 160ms ease,
+    background 160ms ease;
+}
+
+.danger-button:hover {
+  transform: translateY(-1px);
+  background: color-mix(in oklch, #df7777 12%, transparent);
+}
+
+.story-editor {
+  display: grid;
+  gap: 1.15rem;
+  margin-top: 3rem;
+  padding: 1.75rem;
+  border: 1px solid color-mix(in oklch, var(--border) 70%, transparent);
+  border-radius: 0.8rem;
+  background: var(--card);
+}
+
+.story-editor__body {
+  min-height: 24rem;
+  font-family: "Fraunces", Georgia, serif;
+  font-size: 1.1rem;
+  line-height: 1.8;
+}
+
+.story-editor__actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+  align-items: center;
+}
+
+.story-editor__submit-button {
+  border: 0;
+  cursor: pointer;
+}
+
+.story-editor__submit-button:disabled {
+  cursor: wait;
+  opacity: 0.7;
+}
+
+.editor-status-row {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.7rem;
+  margin-top: 1rem;
+  color: var(--muted-foreground);
+  font-size: 0.9rem;
+  line-height: 1.5;
+}
+
+.editor-media-placeholder {
+  margin-top: 1.25rem;
+  padding: 1.75rem;
+  border: 1px dashed
+    color-mix(in oklch, var(--border) 85%, transparent);
+  border-radius: 0.8rem;
+  background: color-mix(in oklch, var(--card) 58%, transparent);
+}
+
+.editor-media-placeholder h2 {
+  margin: 0.65rem 0 0;
+  font-family: "Fraunces", Georgia, serif;
+  font-size: 1.5rem;
+  font-weight: 500;
+  letter-spacing: -0.03em;
+}
+
+.editor-media-placeholder p:not(.eyebrow) {
+  margin: 0.8rem 0 0;
+  color: var(--muted-foreground);
+  line-height: 1.7;
+}
+
+@media (max-width: 640px) {
+  .story-list-card,
+  .story-editor,
+  .editor-media-placeholder,
+  .story-list-empty {
+    padding: 1.25rem;
+  }
+
+  .story-list-card__top {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+
+  .story-editor__body {
+    min-height: 20rem;
+  }
+}

@@ -1,5 +1,6 @@
 import { NavLink } from "react-router-dom";
 
+import { useAuth } from "../auth/AuthProvider";
 import { usePublicProfiles } from "../hooks/usePublicProfiles";
 import type { Profile } from "../types/profile";
 
@@ -14,6 +15,7 @@ function getNavigationLabel(profile: Profile): string {
 
 export function SiteHeader() {
   const { profiles, loading } = usePublicProfiles();
+  const { session } = useAuth();
 
   return (
     <header className="site-header">
@@ -73,6 +75,17 @@ export function SiteHeader() {
               }
             >
               Others
+            </NavLink>
+
+            <NavLink
+              to={session ? "/dashboard" : "/login"}
+              className={({ isActive }) =>
+                `site-nav__link ${
+                  isActive ? "site-nav__link--active" : ""
+                }`
+              }
+            >
+              {session ? "Dashboard" : "Sign in"}
             </NavLink>
           </nav>
         </div>
