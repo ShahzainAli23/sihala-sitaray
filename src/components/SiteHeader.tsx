@@ -1,8 +1,20 @@
 import { NavLink } from "react-router-dom";
 
-import { referenceAuthors } from "../data/referenceContent";
+import { usePublicProfiles } from "../hooks/usePublicProfiles";
+import type { Profile } from "../types/profile";
+
+function getNavigationLabel(profile: Profile): string {
+  return (
+    profile.nav_label.trim() ||
+    profile.page_title.trim() ||
+    profile.display_name.trim() ||
+    "Untitled Author"
+  );
+}
 
 export function SiteHeader() {
+  const { profiles, loading } = usePublicProfiles();
+
   return (
     <header className="site-header">
       <div className="site-header__inner">
@@ -14,38 +26,56 @@ export function SiteHeader() {
           <span className="site-brand__subtitle">Student Voices</span>
         </NavLink>
 
-        <nav className="site-nav" aria-label="Main navigation">
-          <NavLink
-            to="/"
-            end
-            className={({ isActive }) =>
-              `site-nav__link ${isActive ? "site-nav__link--active" : ""}`
-            }
-          >
-            Home
-          </NavLink>
-
-          {referenceAuthors.map((author) => (
+        <div className="site-header__nav-area">
+          <nav className="site-nav" aria-label="Main navigation">
             <NavLink
-              key={author.username}
-              to={`/stories/${author.username}`}
+              to="/"
+              end
               className={({ isActive }) =>
-                `site-nav__link ${isActive ? "site-nav__link--active" : ""}`
+                `site-nav__link ${
+                  isActive ? "site-nav__link--active" : ""
+                }`
               }
             >
-              {author.navLabel}
+              Home
             </NavLink>
-          ))}
 
-          <NavLink
-            to="/others"
-            className={({ isActive }) =>
-              `site-nav__link ${isActive ? "site-nav__link--active" : ""}`
-            }
-          >
-            Others
-          </NavLink>
-        </nav>
+            {loading ? (
+              <span className="site-nav__status">Loading writers...</span>
+            ) : (
+              profiles.map((profile) => {
+                if (!profile.username) {
+                  return null;
+                }
+
+                return (
+                  <NavLink
+                    key={profile.id}
+                    to={`/stories/${profile.username}`}
+                    className={({ isActive }) =>
+                      `site-nav__link ${
+                        isActive ? "site-nav__link--active" : ""
+                      }`
+                    }
+                  >
+                    {getNavigationLabel(profile)}
+                  </NavLink>
+                );
+              })
+            )}
+
+            <NavLink
+              to="/others"
+              className={({ isActive }) =>
+                `site-nav__link ${
+                  isActive ? "site-nav__link--active" : ""
+                }`
+              }
+            >
+              Others
+            </NavLink>
+          </nav>
+        </div>
       </div>
     </header>
   );

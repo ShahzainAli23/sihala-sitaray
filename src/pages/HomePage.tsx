@@ -2,10 +2,37 @@ import { Link } from "react-router-dom";
 
 import {
   homeIntroduction,
-  referenceAuthors,
+  homeSignature,
 } from "../data/referenceContent";
+import { usePublicProfiles } from "../hooks/usePublicProfiles";
+import type { Profile } from "../types/profile";
+
+function getAuthorName(profile: Profile): string {
+  return (
+    profile.display_name.trim() ||
+    profile.page_title.trim() ||
+    profile.nav_label.trim() ||
+    "Author"
+  );
+}
+
+function getCardBlurb(profile: Profile): string {
+  return (
+    profile.card_blurb.trim() ||
+    "Stories, thoughts, and imagination shared one page at a time."
+  );
+}
 
 export function HomePage() {
+  const { profiles, loading, error } = usePublicProfiles();
+
+  const featuredProfiles = profiles.filter(
+    (profile) => profile.is_featured,
+  );
+
+  const displayedProfiles =
+    featuredProfiles.length > 0 ? featuredProfiles : profiles;
+
   return (
     <>
       <section className="hero-section">
@@ -22,45 +49,84 @@ export function HomePage() {
             ))}
 
             <p className="hero-section__signature">
-              Minahil Tariq &amp; Anusha Sharif — Teach for Pakistan Alumni and
-              Sihala Sitaray&apos;s number one fans
+              {homeSignature}
             </p>
           </div>
 
-          <div className="hero-section__actions">
-            {referenceAuthors.map((author) => (
-              <Link
-                key={author.username}
-                to={`/stories/${author.username}`}
-                className="pill-button"
-              >
-                Read {author.name}&apos;s stories <span>→</span>
-              </Link>
-            ))}
-          </div>
+          {!loading && displayedProfiles.length > 0 ? (
+            <div className="hero-section__actions">
+              {displayedProfiles.map((profile) => {
+                if (!profile.username) {
+                  return null;
+                }
+
+                return (
+                  <Link
+                    key={profile.id}
+                    to={`/stories/${profile.username}`}
+                    className="pill-button"
+                  >
+                    Read {getAuthorName(profile)}&apos;s stories{" "}
+                    <span>→</span>
+                  </Link>
+                );
+              })}
+            </div>
+          ) : null}
         </div>
       </section>
 
-      <section id="writers" className="writers-section section-border-top">
+      <section className="writers-section section-border-top">
         <div className="page-container">
           <p className="eyebrow">The Writers</p>
 
-          <div className="writer-grid">
-            {referenceAuthors.map((author) => (
-              <Link
-                key={author.username}
-                to={`/stories/${author.username}`}
-                className="writer-card"
-              >
-                <div className="writer-card__heading">
-                  <h2>{author.name}</h2>
-                  <span aria-hidden="true">→</span>
-                </div>
+          {loading ? (
+            <div className="writer-loading-state">
+              Loading writers...
+            </div>
+          ) : null}
 
-                <p>{author.blurb}</p>
-              </Link>
-            ))}
-          </div>
+          {!loading && error ? (
+            <div className="writer-empty-state">
+              <p>Unable to load writers right now.</p>
+              <span>{error}</span>
+            </div>
+          ) : null}
+
+          {!loading && !error && displayedProfiles.length === 0 ? (
+            <div className="writer-empty-state">
+              <p>Writer profiles will appear here soon.</p>
+              <span>
+                Once an author is activated, their page will appear in the
+                navigation and here on the homepage.
+              </span>
+            </div>
+          ) : null}
+
+          {!loading && !error && displayedProfiles.length > 0 ? (
+            <div className="writer-grid">
+              {displayedProfiles.map((profile) => {
+                if (!profile.username) {
+                  return null;
+                }
+
+                return (
+                  <Link
+                    key={profile.id}
+                    to={`/stories/${profile.username}`}
+                    className="writer-card"
+                  >
+                    <div className="writer-card__heading">
+                      <h2>{getAuthorName(profile)}</h2>
+                      <span aria-hidden="true">→</span>
+                    </div>
+
+                    <p>{getCardBlurb(profile)}</p>
+                  </Link>
+                );
+              })}
+            </div>
+          ) : null}
         </div>
       </section>
 
@@ -73,7 +139,7 @@ export function HomePage() {
         </div>
       </section>
 
-      <section id="gallery" className="gallery-section section-border-top">
+      <section className="gallery-section section-border-top">
         <div className="page-container page-container--wide">
           <p className="eyebrow">The Gallery</p>
 
