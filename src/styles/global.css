@@ -1271,3 +1271,514 @@ a {
     grid-template-columns: 1fr;
   }
 }
+
+/* ==========================================================
+   PUBLIC STORIES + GALLERY
+   ========================================================== */
+
+.author-header-media {
+  display: grid;
+  gap: 1rem;
+  margin: 0 0 3rem;
+}
+
+.author-header-media--single-image {
+  grid-template-columns: 1fr;
+}
+
+.author-header-media--two-images {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.author-header-media img {
+  display: block;
+  width: 100%;
+  min-height: 18rem;
+  border-radius: 0.85rem;
+  object-fit: cover;
+}
+
+.author-stories-section {
+  margin-top: 3rem;
+}
+
+.public-story-list {
+  display: grid;
+  gap: 1rem;
+  margin-top: 1.25rem;
+}
+
+.public-story-card {
+  padding: 1.6rem;
+  border: 1px solid
+    color-mix(in oklch, var(--border) 70%, transparent);
+  border-radius: 0.8rem;
+  background: var(--card);
+}
+
+.public-story-card__date,
+.public-story-page__date {
+  margin: 0;
+  color: var(--muted-foreground);
+  font-size: 0.8rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.public-story-card h2 {
+  margin: 0.75rem 0 0;
+  font-family: "Fraunces", Georgia, serif;
+  font-size: 1.8rem;
+  font-weight: 500;
+  letter-spacing: -0.035em;
+}
+
+.public-story-card > p:not(.public-story-card__date) {
+  margin: 0.85rem 0 0;
+  color: var(--muted-foreground);
+  line-height: 1.7;
+}
+
+.public-story-card .secondary-button {
+  margin-top: 1.25rem;
+}
+
+.public-story-page {
+  padding: 4rem 0 6rem;
+}
+
+.public-story-page__back {
+  margin-top: 0;
+}
+
+.public-story-page__header {
+  padding: 2.5rem 0;
+  border-bottom: 1px solid
+    color-mix(in oklch, var(--border) 70%, transparent);
+}
+
+.public-story-page__title {
+  max-width: 50rem;
+  margin: 0.9rem 0 0;
+  font-family: "Fraunces", Georgia, serif;
+  font-size: clamp(3rem, 7vw, 5rem);
+  font-weight: 500;
+  line-height: 1.02;
+  letter-spacing: -0.05em;
+}
+
+.public-story-page__date {
+  margin-top: 1rem;
+}
+
+.public-story-page__intro {
+  max-width: 42rem;
+  margin: 1.25rem 0 0;
+  color: var(--muted-foreground);
+  font-family: "Fraunces", Georgia, serif;
+  font-size: 1.3rem;
+  font-style: italic;
+  line-height: 1.6;
+}
+
+.story-content {
+  padding-top: 2.75rem;
+}
+
+.story-content__paragraph {
+  margin: 0 0 1.5rem;
+  font-family: "Fraunces", Georgia, serif;
+  font-size: 1.2rem;
+  line-height: 1.9;
+}
+
+.story-media-block {
+  margin: 2rem 0;
+}
+
+.story-media-block img,
+.story-media-block video {
+  display: block;
+  width: 100%;
+  max-height: 42rem;
+  border-radius: 0.8rem;
+  object-fit: contain;
+  background: color-mix(in oklch, var(--secondary) 55%, transparent);
+}
+
+.story-media-block figcaption {
+  margin-top: 0.65rem;
+  color: var(--muted-foreground);
+  font-size: 0.9rem;
+  line-height: 1.6;
+  text-align: center;
+}
+
+.story-media-unavailable {
+  margin: 2rem 0;
+  padding: 1rem;
+  border: 1px dashed var(--border);
+  border-radius: 0.7rem;
+  color: var(--muted-foreground);
+  text-align: center;
+}
+
+.gallery-masonry {
+  column-count: 3;
+  column-gap: 1rem;
+}
+
+.gallery-card {
+  display: inline-block;
+  width: 100%;
+  margin: 0 0 1rem;
+  overflow: hidden;
+  break-inside: avoid;
+  border: 1px solid
+    color-mix(in oklch, var(--border) 70%, transparent);
+  border-radius: 0.8rem;
+  background: var(--card);
+}
+
+.gallery-card__media {
+  background: color-mix(in oklch, var(--secondary) 55%, transparent);
+}
+
+.gallery-card__media img,
+.gallery-card__media video {
+  display: block;
+  width: 100%;
+  max-height: 32rem;
+  object-fit: cover;
+}
+
+.gallery-card__unavailable {
+  display: grid;
+  min-height: 12rem;
+  place-items: center;
+  color: var(--muted-foreground);
+}
+
+.gallery-card__content {
+  padding: 1rem;
+}
+
+.gallery-card__caption {
+  margin: 0;
+  color: var(--foreground);
+  line-height: 1.5;
+}
+
+.gallery-card__meta {
+  margin: 0.6rem 0 0;
+  color: var(--muted-foreground);
+  font-size: 0.78rem;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
+.gallery-card__story-link {
+  display: inline-flex;
+  gap: 0.4rem;
+  margin-top: 0.7rem;
+  font-size: 0.9rem;
+  font-weight: 600;
+}
+
+.gallery-card__story-link:hover {
+  color: var(--accent);
+}
+
+@media (max-width: 850px) {
+  .gallery-masonry {
+    column-count: 2;
+  }
+}
+
+@media (max-width: 640px) {
+  .author-header-media--two-images {
+    grid-template-columns: 1fr;
+  }
+
+  .author-header-media img {
+    min-height: 14rem;
+  }
+
+  .public-story-page {
+    padding-top: 3rem;
+  }
+
+  .public-story-page__header {
+    padding: 2rem 0;
+  }
+
+  .story-content__paragraph {
+    font-size: 1.08rem;
+    line-height: 1.82;
+  }
+
+  .gallery-masonry {
+    column-count: 1;
+  }
+}
+
+/* ==========================================================
+   ADMIN MODERATION
+   ========================================================== */
+
+.admin-review-list {
+  display: grid;
+  gap: 1.25rem;
+  margin-top: 3rem;
+}
+
+.admin-review-card {
+  padding: 1.75rem;
+  border: 1px solid
+    color-mix(in oklch, var(--border) 70%, transparent);
+  border-radius: 0.8rem;
+  background: var(--card);
+}
+
+.admin-review-card__top {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 1rem;
+}
+
+.admin-review-card__top h2 {
+  margin: 0.55rem 0 0;
+  font-family: "Fraunces", Georgia, serif;
+  font-size: 1.8rem;
+  font-weight: 500;
+  letter-spacing: -0.035em;
+}
+
+.admin-review-card__meta {
+  margin: 0.55rem 0 0;
+  color: var(--muted-foreground);
+  font-size: 0.875rem;
+}
+
+.admin-review-card__story-info {
+  margin-top: 1.75rem;
+  padding-top: 1.5rem;
+  border-top: 1px solid
+    color-mix(in oklch, var(--border) 60%, transparent);
+}
+
+.admin-review-card__story-info h3 {
+  margin: 0.6rem 0 0;
+  font-family: "Fraunces", Georgia, serif;
+  font-size: 1.55rem;
+  font-weight: 500;
+  letter-spacing: -0.025em;
+}
+
+.admin-review-card__story-info > p:not(.eyebrow) {
+  margin: 0.75rem 0 0;
+  color: var(--muted-foreground);
+  line-height: 1.7;
+}
+
+.admin-review-card__preview {
+  margin-top: 1.5rem;
+  border: 1px solid
+    color-mix(in oklch, var(--border) 70%, transparent);
+  border-radius: 0.7rem;
+  background: color-mix(in oklch, var(--background) 62%, var(--card));
+}
+
+.admin-review-card__preview summary {
+  padding: 1rem 1.1rem;
+  cursor: pointer;
+  color: var(--foreground);
+  font-size: 0.9rem;
+  font-weight: 600;
+}
+
+.admin-review-card__preview-content {
+  padding: 0 1.1rem 1.1rem;
+  border-top: 1px solid
+    color-mix(in oklch, var(--border) 60%, transparent);
+}
+
+.admin-review-card__preview-content .story-content {
+  padding-top: 1.5rem;
+}
+
+.admin-review-card__actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+  margin-top: 1.5rem;
+}
+
+.admin-review-card__publish {
+  border: 0;
+  cursor: pointer;
+}
+
+.admin-review-card__publish:disabled,
+.admin-review-card__actions .danger-button:disabled {
+  cursor: wait;
+  opacity: 0.7;
+}
+
+@media (max-width: 640px) {
+  .admin-review-card {
+    padding: 1.25rem;
+  }
+
+  .admin-review-card__top {
+    flex-direction: column;
+  }
+}
+
+/* ==========================================================
+   ADMIN AUTHOR MANAGEMENT
+   ========================================================== */
+
+.admin-page-links {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+  gap: 1rem;
+}
+
+.admin-page-links .text-link {
+  margin-top: 0;
+}
+
+.admin-authors-layout {
+  display: grid;
+  grid-template-columns: minmax(0, 1.2fr) minmax(18rem, 0.8fr);
+  gap: 1.5rem;
+  margin-top: 3rem;
+  align-items: start;
+}
+
+.admin-author-form,
+.admin-authors-list-section {
+  display: grid;
+  gap: 1.15rem;
+  padding: 1.75rem;
+  border: 1px solid
+    color-mix(in oklch, var(--border) 70%, transparent);
+  border-radius: 0.8rem;
+  background: var(--card);
+}
+
+.admin-author-form h2,
+.admin-authors-list-section h2 {
+  margin: 0.65rem 0 0;
+  font-family: "Fraunces", Georgia, serif;
+  font-size: 1.65rem;
+  font-weight: 500;
+  letter-spacing: -0.03em;
+}
+
+.admin-author-form > div:first-child p:not(.eyebrow),
+.admin-authors-list-section > div:first-child p:not(.eyebrow) {
+  margin: 0.8rem 0 0;
+  color: var(--muted-foreground);
+  line-height: 1.7;
+}
+
+.admin-author-form strong {
+  color: var(--foreground);
+}
+
+.form-field small {
+  color: var(--muted-foreground);
+  font-size: 0.78rem;
+  line-height: 1.45;
+}
+
+.admin-author-checkboxes {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.9rem 1.5rem;
+}
+
+.admin-create-author-button {
+  width: fit-content;
+  border: 0;
+  cursor: pointer;
+}
+
+.admin-create-author-button:disabled {
+  cursor: wait;
+  opacity: 0.7;
+}
+
+.admin-authors-empty {
+  padding: 1.25rem;
+  border: 1px dashed
+    color-mix(in oklch, var(--border) 85%, transparent);
+  border-radius: 0.7rem;
+  color: var(--muted-foreground);
+  text-align: center;
+}
+
+.admin-author-list {
+  display: grid;
+  gap: 0.8rem;
+}
+
+.admin-author-list-card {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  padding: 1rem;
+  border: 1px solid
+    color-mix(in oklch, var(--border) 65%, transparent);
+  border-radius: 0.7rem;
+  background: color-mix(in oklch, var(--background) 55%, var(--card));
+}
+
+.admin-author-list-card h3 {
+  margin: 0.5rem 0 0;
+  font-family: "Fraunces", Georgia, serif;
+  font-size: 1.25rem;
+  font-weight: 500;
+  letter-spacing: -0.02em;
+}
+
+.admin-author-list-card__meta {
+  margin: 0.45rem 0 0;
+  color: var(--muted-foreground);
+  font-size: 0.8rem;
+  line-height: 1.45;
+}
+
+.admin-author-list-card .secondary-button {
+  flex: 0 0 auto;
+  margin-top: 0;
+}
+
+@media (max-width: 960px) {
+  .admin-authors-layout {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 640px) {
+  .admin-page-links {
+    justify-content: flex-start;
+  }
+
+  .admin-author-form,
+  .admin-authors-list-section {
+    padding: 1.25rem;
+  }
+
+  .admin-author-list-card {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+}

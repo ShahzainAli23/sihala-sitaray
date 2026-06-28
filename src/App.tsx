@@ -1,10 +1,13 @@
 import { Route, Routes } from "react-router-dom";
 
 import { AuthProvider } from "./auth/AuthProvider";
+import { AdminRoute } from "./components/AdminRoute";
 import { ProtectedRoute } from "./components/ProtectedRoute";
 import { SiteHeader } from "./components/SiteHeader";
 
 import { AccountSettingsPage } from "./pages/AccountSettingsPage";
+import { AdminAuthorsPage } from "./pages/AdminAuthorsPage";
+import { AdminReviewPage } from "./pages/AdminReviewPage";
 import { AuthorPage } from "./pages/AuthorPage";
 import { DashboardPage } from "./pages/DashboardPage";
 import { GalleryPage } from "./pages/GalleryPage";
@@ -13,6 +16,7 @@ import { LoginPage } from "./pages/LoginPage";
 import { MoreAuthorsPage } from "./pages/MoreAuthorsPage";
 import { MyStoriesPage } from "./pages/MyStoriesPage";
 import { NotFoundPage } from "./pages/NotFoundPage";
+import { PublicStoryPage } from "./pages/PublicStoryPage";
 import { StoryEditorPage } from "./pages/StoryEditorPage";
 
 export default function App() {
@@ -24,7 +28,14 @@ export default function App() {
         <main className="main-content">
           <Routes>
             <Route path="/" element={<HomePage />} />
+
             <Route path="/stories/:username" element={<AuthorPage />} />
+
+            <Route
+              path="/stories/:username/:slug"
+              element={<PublicStoryPage />}
+            />
+
             <Route path="/others" element={<MoreAuthorsPage />} />
             <Route path="/gallery" element={<GalleryPage />} />
             <Route path="/login" element={<LoginPage />} />
@@ -48,6 +59,15 @@ export default function App() {
               />
 
               <Route path="/account" element={<AccountSettingsPage />} />
+
+              <Route element={<AdminRoute />}>
+                <Route path="/admin" element={<AdminReviewPage />} />
+
+                <Route
+                  path="/admin/authors"
+                  element={<AdminAuthorsPage />}
+                />
+              </Route>
             </Route>
 
             <Route path="*" element={<NotFoundPage />} />

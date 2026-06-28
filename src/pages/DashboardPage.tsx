@@ -52,6 +52,43 @@ export function DashboardPage() {
         </div>
 
         <div className="dashboard-grid">
+          {profile?.role === "admin" ? (
+            <>
+              <article className="dashboard-card">
+                <p className="eyebrow">Admin moderation</p>
+
+                <h2>Review author submissions.</h2>
+
+                <p>
+                  Read pending stories, inspect attached media, and decide
+                  whether to publish or return them for revision.
+                </p>
+
+                <Link to="/admin" className="pill-button">
+                  Open review queue <span>→</span>
+                </Link>
+              </article>
+
+              <article className="dashboard-card">
+                <p className="eyebrow">Author management</p>
+
+                <h2>Add future writers yourself.</h2>
+
+                <p>
+                  Create temporary author accounts, configure their public
+                  pages, and add them to the scrollable header.
+                </p>
+
+                <Link
+                  to="/admin/authors"
+                  className="secondary-button"
+                >
+                  Manage authors <span>→</span>
+                </Link>
+              </article>
+            </>
+          ) : null}
+
           <article className="dashboard-card">
             <p className="eyebrow">My stories</p>
 

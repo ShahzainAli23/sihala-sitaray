@@ -15,7 +15,7 @@ function getNavigationLabel(profile: Profile): string {
 
 export function SiteHeader() {
   const { profiles, loading } = usePublicProfiles();
-  const { session } = useAuth();
+  const { session, profile } = useAuth();
 
   return (
     <header className="site-header">
@@ -45,22 +45,22 @@ export function SiteHeader() {
             {loading ? (
               <span className="site-nav__status">Loading writers...</span>
             ) : (
-              profiles.map((profile) => {
-                if (!profile.username) {
+              profiles.map((author) => {
+                if (!author.username) {
                   return null;
                 }
 
                 return (
                   <NavLink
-                    key={profile.id}
-                    to={`/stories/${profile.username}`}
+                    key={author.id}
+                    to={`/stories/${author.username}`}
                     className={({ isActive }) =>
                       `site-nav__link ${
                         isActive ? "site-nav__link--active" : ""
                       }`
                     }
                   >
-                    {getNavigationLabel(profile)}
+                    {getNavigationLabel(author)}
                   </NavLink>
                 );
               })
@@ -76,6 +76,19 @@ export function SiteHeader() {
             >
               Others
             </NavLink>
+
+            {profile?.role === "admin" ? (
+              <NavLink
+                to="/admin"
+                className={({ isActive }) =>
+                  `site-nav__link ${
+                    isActive ? "site-nav__link--active" : ""
+                  }`
+                }
+              >
+                Admin
+              </NavLink>
+            ) : null}
 
             <NavLink
               to={session ? "/dashboard" : "/login"}

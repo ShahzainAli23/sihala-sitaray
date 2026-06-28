@@ -148,11 +148,19 @@ export function HomePage() {
           </h2>
 
           <div className="gallery-empty-state">
-            <p>No photos or videos have been published yet.</p>
-            <span>
-              Uploaded media from approved stories will appear here.
-            </span>
-          </div>
+  <p>Explore moments from our classroom.</p>
+
+  <span>
+    Published photos and videos from student stories are collected in the
+    gallery.
+  </span>
+
+  <Link to="/gallery" className="secondary-button">
+    View gallery <span>→</span>
+  </Link>
+</div>
+
+
         </div>
       </section>
     </>
